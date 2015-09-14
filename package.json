@@ -1,0 +1,18 @@
+{
+  "name": "Frisby-API-Testing",
+  "version": "0.0.0",
+  "description": "Frisby API Testing",
+  "main": "TestCase1_spec.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SaiNadh001/Frisby-API-Testing.git"
+  },
+  "author": "Janardhan & Sai",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/SaiNadh001/Frisby-API-Testing/issues"
+  }
+}
