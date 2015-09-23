@@ -1,4 +1,5 @@
 var frisby=require('frisby');
+var config = require('../config.js');
 
 var batchid ="123456"
 
@@ -8,7 +9,7 @@ var Street = "Charles Street "
 var Zip = "02114"
 
 frisby.create('Post load via "/batch/{batch ID}" API by setting below valid values for City, Country, Street, Zip fields, where the values should be as below and Verify.')
-  .post('/batch/'+batchid, {
+  .post(config.host+'/batch/'+batchid, {
   	"City": City,
     "Country": Country,
     "Street": Street,

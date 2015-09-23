@@ -1,14 +1,15 @@
 var frisby=require('frisby');
+var config = require('../config.js');
 
 var batchid ="123456"
 var entryid ="123456"
 
 frisby.create('DELETE load via "/batch/{batch ID}/{entry ID}" and Verify.')
-  .delete('/batch/'+batchid+"/"+entryid)
+  .delete(config.host+'/batch/'+batchid+"/"+entryid)
   .expectStatus(200)
-  .afterJSON(function(json) {
+  .after(function(err, res, body) {
     frisby.create('GET load via "/batch/ {batch ID}/{entry ID (deleted entry id)}" and verify')
-      .get('/batch/'+batchid+"/"+entryid)
+      .get(config.host+'/batch/'+batchid+"/"+entryid)
       .expectStatus(404)
     .toss()
 	  })

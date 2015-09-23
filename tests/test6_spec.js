@@ -1,8 +1,10 @@
 var frisby=require('frisby');
+var config = require('../config.js');
 
 var batchid =""
 
 frisby.create('GET load via "/batch/{Without batch ID}" and Verify.')
-  .get('/batch/'+batchid)
-  .expectStatus(404)
+  .get(config.host+'/batch/'+batchid)
+  .expectStatus(400)
+  .inspectBody()
 .toss()
