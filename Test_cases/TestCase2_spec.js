@@ -1,7 +1,6 @@
 var frisby=require('frisby');
 
 
-
 frisby.create('Post JSON string as body')
   .post('http://'+your_host+'/api/v1/user_authentication/login?api_token='+api_token, {
   	"email": email,
