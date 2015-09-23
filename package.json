@@ -14,5 +14,11 @@
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/SaiNadh001/Frisby-API-Testing/issues"
+  },
+  "devDependencies": {
+    "frisby": "~0.8.5"
+  },
+  "dependencies": {
+    "batchelor": "~2.0.1"
   }
 }

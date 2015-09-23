@@ -7,10 +7,9 @@ Frisby API Testing
 
 ##Installation
 
-> npm install
-> (or)
-> npn install -g frisby
-> npm install -g jasmine-node
+*> npm install
+*> npn install -g frisby
+*> npm install -g jasmine-node
 
 ##API Reference
 
