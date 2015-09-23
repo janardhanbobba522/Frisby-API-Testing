@@ -1,6 +1,7 @@
 var frisby=require('frisby');
 
 var batchid ="123456"
+
 var City = "@@@"
 var Country = "$$$"
 var Street = "###"

@@ -1,0 +1,15 @@
+var frisby=require('frisby');
+
+var batchid ="123456"
+var entryid ="123456"
+
+frisby.create('DELETE load via "/batch/{batch ID}/{entry ID}" and Verify.')
+  .delete('/batch/'+batchid+"/"+entryid)
+  .expectStatus(200)
+  .afterJSON(function(json) {
+    frisby.create('GET load via "/batch/ {batch ID}/{entry ID (deleted entry id)}" and verify')
+      .get('/batch/'+batchid+"/"+entryid)
+      .expectStatus(404)
+    .toss()
+	  })
+.toss()

@@ -1,14 +1,15 @@
 var frisby=require('frisby');
 
 var batchid ="123456"
+var entryid ="123456"
 
 var City = "New York"
 var Country = "USA"
 var Street = "Charles Street "
 var Zip = "02114"
 
-frisby.create('Post load via "/batch/{batch ID}" API by setting below valid values for City, Country, Street, Zip fields, where the values should be as below and Verify.')
-  .post('/batch/'+batchid, {
+frisby.create('Post load via "/batch/{batch ID}/{entry ID}" API by setting values for City, Country, Street, Zip fields, where the values should be as below and Verify.')
+  .post('/batch/'+batchid+"/"+entryid, {
   	"City": City,
     "Country": Country,
     "Street": Street,
