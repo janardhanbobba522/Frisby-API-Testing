@@ -1,7 +1,7 @@
 var frisby=require('frisby');
 var config = require('../config.js');
 
-var batchid ="123456"
+var batchid = config.batchid
 
 frisby.create('DELETE load via "/batch/{batch ID}" and Verify. ')
   .delete(config.host+'/batch/'+batchid)

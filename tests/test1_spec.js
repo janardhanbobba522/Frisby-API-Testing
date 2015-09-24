@@ -1,7 +1,7 @@
 var frisby=require('frisby');
 var config = require('../config.js');
 
-var batchid ="123456"
+var batchid = config.batchid
 
 var City = "New York"
 var Country = "USA"
@@ -16,4 +16,5 @@ frisby.create('Post load via "/batch/{batch ID}" API by setting below valid valu
     "Zip": Zip,
  	}, {json: true})
  	.inspectBody()
+ 	.expectStatus(200)
 .toss()

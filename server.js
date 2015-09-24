@@ -1,11 +1,32 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var config = require('./config.js');
 
 var app = express();
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || config.port;
+
 
 var del = false
-var data = {}
+var Batch = {
+		id: "",
+		isComplete: false,
+		itemCount: 0,
+		successCount: 0,
+		errorCount: 0,
+		createdOn: new Date()
+	}
+var Entry={
+		id: "",
+		city: "",
+		country: "",
+		isProcessed: "",
+		zip: "",
+		street: "",
+		error: "",
+		coordinates: "",
+		_version: ""
+	}
+
 var letters = /^[A-Za-z ]+$/;
 var numeric_letters = /^[A-Za-z0-9 ]+$/;
 var numeric = /^[0-9 ]+$/;
@@ -22,8 +43,11 @@ app.get('/', function(req,res){
 app.get('/batch/', function(req,res){
 	console.log(req.params.batchid)
 	console.log(req.query)
-	res.statusCode = 400;
-	res.send('{success:"false",message:"Invalid Batch ID"}');
+	console.log(Entry)
+	// res.statusCode = 400;
+	// res.send('{success:"false",message:"Invalid Batch ID"}');
+	res.statusCode = 200;
+	res.send(Entry);
 });
 
 app.get('/batch/:batchid', function(req,res){
@@ -40,13 +64,11 @@ app.get('/batch/:batchid', function(req,res){
 	}
 	else{
 		res.statusCode = 200;
-		res.send(data);
+		res.send(Entry);
 	}
 });
 
 app.get('/batch/:batchid/:entryid', function(req,res){
-	console.log(req.params.batchid)
-	console.log(req.query)
 	if(del){
 		del = false;
 		res.statusCode = 404;
@@ -58,14 +80,25 @@ app.get('/batch/:batchid/:entryid', function(req,res){
 	}
 	else{
 		res.statusCode = 200;
-		res.send(data);
+		res.send(Entry);
 	}
 });
 
 app.delete('/batch/:batchid', function(req,res){
 	console.log(req.params.batchid);
 	console.log(req.query);
-	data={};
+	Entry={
+		id: "",
+		city: "",
+		country: "",
+		isProcessed: "",
+		zip: "",
+		street: "",
+		error: "",
+		coordinates: "",
+		_version: ""
+	}
+
 	del=true;
 	res.statusCode = 200;
 	res.send();
@@ -74,7 +107,18 @@ app.delete('/batch/:batchid', function(req,res){
 app.delete('/batch/:batchid/:entryid', function(req,res){
 	console.log(req.params.batchid);
 	console.log(req.query);
-	data={};
+	Entry={
+		id: "",
+		city: "",
+		country: "",
+		isProcessed: "",
+		zip: "",
+		street: "",
+		error: "",
+		coordinates: "",
+		_version: ""
+	}
+	
 	del=true;
 	res.statusCode = 200;
 	res.send();
@@ -92,7 +136,18 @@ app.post('/batch/:batchid', function(req,res){
 		res.send('{success:"false",message:"Invalid Country"}');
 	}
 	else{
-		data=req.body
+		
+		Entry={
+			id: "",
+			city: req.body.City,
+			country: req.body.Country,
+			isProcessed: "",
+			zip: req.body.Zip,
+			street: req.body.Street,
+			error: "",
+			coordinates: "",
+			_version: ""
+		}
 		res.statusCode = 200;
 		res.send('{success:"true"}');
 	}
@@ -111,7 +166,17 @@ app.post('/batch/:batchid/:entryid', function(req,res){
 		res.send('{success:"false",message:"Invalid Country"}');
 	}
 	else{
-		data=req.body
+		Entry={
+			id: req.params.entryid,
+			city: req.body.City,
+			country: req.body.Country,
+			isProcessed: "",
+			zip: req.body.Zip,
+			street: req.body.Street,
+			error: "",
+			coordinates: "",
+			_version: ""
+		}
 		res.statusCode = 200;
 		res.send('{success:"true"}');
 	}
@@ -130,7 +195,17 @@ app.put('/batch/:batchid/:entryid', function(req,res){
 		res.send('{success:"false",message:"Invalid Country"}');
 	}
 	else{
-		data=req.body
+		Entry={
+			id: req.params.entryid,
+			city: req.body.City,
+			country: req.body.Country,
+			isProcessed: "",
+			zip: req.body.Zip,
+			street: req.body.Street,
+			error: "",
+			coordinates: "",
+			_version: ""
+		}
 		res.statusCode = 200;
 		res.send('{success:"true"}');
 	}
